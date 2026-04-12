@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="mymenu">Ola mundo</string>
+    <string name="btn_ok">OK</string>
+    <string name="hint_nome">Digite seu nome</string>
 </resources>
