@@ -3,4 +3,5 @@
     <string name="mymenu">Ola mundo</string>
     <string name="btn_ok">OK</string>
     <string name="hint_nome">Digite seu nome</string>
+    <string name="text_nome">Nome:</string>
 </resources>

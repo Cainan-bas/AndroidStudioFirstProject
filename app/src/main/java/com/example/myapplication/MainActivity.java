@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.linearlayout);
+        //setContentView(R.layout.linearlayout);
+        setContentView(R.layout.layout_preferences);;
         buttonSave = this.findViewById(R.id.button);
         editText = this.findViewById(R.id.editText);
         myPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
