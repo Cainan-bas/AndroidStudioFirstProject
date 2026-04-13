@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.i("TAG", "Botao Clicado");
                 editText.setText("Cainan Brito");
-                Toast.makeText(MainActivity.this, "Botão clicado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, editText.getText(), Toast.LENGTH_SHORT).show();
             }
         });
     }
