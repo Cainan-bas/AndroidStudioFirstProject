@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,8 +19,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected EditText editText;
-
+    //protected EditText editText;
+    private Button buttonSave=null;
+    private EditText editText=null;
+    private SharedPreferences myPrefs=null;
+    /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,34 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TAG", "Botao Clicado");
                 editText.setText("Cainan Brito");
                 Toast.makeText(MainActivity.this, editText.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.linearlayout);
+        buttonSave = this.findViewById(R.id.button);
+        editText = this.findViewById(R.id.editText);
+        myPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
+        String name = myPrefs.getString("nome","");
+        if (name!=null){
+            editText.setText(name);
+        }
+
+        onClickListener();
+
+    }
+
+    public void onClickListener(){
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor ePrefs = myPrefs.edit();
+                ePrefs.putString("nome",MainActivity.this.editText.getText().toString());
+                ePrefs.commit();
             }
         });
     }
