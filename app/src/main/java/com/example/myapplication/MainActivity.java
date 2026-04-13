@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.activity.EdgeToEdge;
@@ -16,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    protected EditText editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +29,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Button b = (Button) findViewById(R.id.button);
+        this.editText = (EditText) findViewById(R.id.editText);
+        Toast.makeText(this, "TEXTO", Toast.LENGTH_LONG).show();
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.i("TAG", "Botao Clicado");
+                editText.setText("Cainan Brito");
+                Toast.makeText(MainActivity.this, "Botão clicado", Toast.LENGTH_SHORT).show();
             }
         });
     }
