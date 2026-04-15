@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,10 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.os.LocaleListCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -66,14 +69,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickListener(){
         buttonSave.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                LocaleListCompat currentLocales = AppCompatDelegate.getApplicationLocales();
+
+                String targetLang;
+                if (!currentLocales.isEmpty() && currentLocales.get(0).getLanguage().equals("en")) {
+                    targetLang = "pt";
+                } else {
+                    targetLang = "en";
+                }
+                AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(targetLang));
+
                 SharedPreferences.Editor ePrefs = myPrefs.edit();
                 ePrefs.putString("nome",MainActivity.this.editText.getText().toString());
                 ePrefs.commit();
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

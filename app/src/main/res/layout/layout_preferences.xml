@@ -60,7 +60,7 @@
             android:layout_marginTop="32dp"
             android:paddingStart="48dp"
             android:paddingEnd="48dp"
-            android:text="Salvar"
+            android:text="@string/salvar"
             android:textAllCaps="false"
             app:cornerRadius="24dp" />
 
