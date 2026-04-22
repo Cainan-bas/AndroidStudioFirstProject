@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true">
-
+    <!--
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         app:title="My App"
         app:titleTextColor="@android:color/white" />
 
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -46,12 +46,12 @@
                 android:layout_weight="1"
                 android:hint="@string/hint_nome"
                 android:inputType="textPersonName"
-                android:textSize="18sp" />
+                android:textSize="18sp" /> -->
 
             <!-- quando tiver um text, é recomendado usar uma variavel @String
             -->
-
-        </LinearLayout>
+        <!--
+        </LinearLayout> -->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button"
@@ -60,10 +60,10 @@
             android:layout_marginTop="32dp"
             android:paddingStart="48dp"
             android:paddingEnd="48dp"
-            android:text="@string/salvar"
+            android:text="@string/soli_perm"
             android:textAllCaps="false"
             app:cornerRadius="24dp" />
-
-    </LinearLayout>
+    <!--
+    </LinearLayout>  -->
 
 </LinearLayout>

@@ -5,4 +5,5 @@
     <string name="hint_nome">Digite seu nome</string>
     <string name="text_nome">Nome:</string>
     <string name="salvar">Salvar</string>
+    <string name="soli_perm">Solicitar permissao da camera</string>
 </resources>
