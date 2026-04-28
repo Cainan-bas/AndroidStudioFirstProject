@@ -113,48 +113,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.layout_preferences);
         Button b = findViewById(R.id.button);
         b.setOnClickListener( v -> {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                //if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE);
-                } else {
-                    Toast.makeText(this, "Permissao ja concedida 1", Toast.LENGTH_SHORT).show();
-
-                }
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CODE);
             } else {
-                Toast.makeText(this, "Permissao ja concedida anteriormente", Toast.LENGTH_SHORT).show();
-            }
-
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                if(Environment.isExternalStorageManager()){
-                    Toast.makeText(this, "Permissao ja concedida 2", Toast.LENGTH_SHORT).show();
-                } else {
-                    //Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                    Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    //Uri uri = Uri.fromParts("package", getPackageName(), null);
-                    //intent.setData(uri);
-                    startActivity(intent);
-
-                }
+                abrirCamera();
             }
         });
     }
 
-    private boolean checkAndRequestPermission() {
-        int diskPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        List<String> listPermissionNeeded = new ArrayList<>();
-
-        if (diskPermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    private void abrirCamera() {
+        try {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Erro ao abrir câmera: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
-        if (!listPermissionNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(this,
-                    listPermissionNeeded.toArray(new String[listPermissionNeeded.size()]), REQUEST_TO_MULTIPLE_PERMISSIONS
-            );
-            return false;
-        }
-
-        return true;
     }
+    /*
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            abrirCamera();
+        }
+    }*/
 }
